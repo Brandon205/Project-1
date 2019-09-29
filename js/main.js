@@ -1,9 +1,11 @@
 //DOM References 
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-var gameStatus = document.getElementById('top-right');
-var score = document.getElementById('top-left');
-var resetButton = document.getElementById('bottom');
+var topRight = document.getElementById('top-right');
+var topLeft = document.getElementById('top-left');
+var resetButton = document.getElementById('reset');
+
+let score = 0;
 
 //Game Pieces 
 var snake = {
@@ -76,8 +78,8 @@ var going = function(x, y) {
 
 function gameOver() {
     if (snake.x > canvas.width - 20 || snake.x < 0 || snake.y > canvas.height + 20 || snake.y < 0) {
-        // console.log('game over');
         snake.alive = false;
+        topRight.textContent = 'Game Over';
     }
 }
 
@@ -88,6 +90,9 @@ function reset() {
     snake.y = 80;
     snake.long = 1;
     snake.tail = [];
+    score = 0;
+    topLeft.textContent = `Score: ${score}`;
+    topRight.textContent = "Play Game!"
 }
 
 function gameLoop() {
@@ -112,6 +117,7 @@ function gameLoop() {
         grow();
         apple.newApple();
         score++;
+        topLeft.textContent = `Score: ${score}`
     }
 }
 
@@ -119,6 +125,7 @@ function gameLoop() {
 document.addEventListener('keydown', function(e) {
     movement(e);
 })
+
 
 resetButton.addEventListener('click', reset);
 

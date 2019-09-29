@@ -1,23 +1,38 @@
-html, body {
-    margin: 0;
-    padding: 0;
+body {
     text-align: center;
 }
+
 canvas {
     margin: 0;
+    display: block;
 }
 div {
-    border: 2px solid hotpink;
+    /* border: 2px solid hotpink; */
     vertical-align: top;
     display: inline-block;
+    margin: 0;
 }
+
+button {
+    display: block;
+    margin: 20px auto;
+}
+
+.flex {
+    display: flex;
+    justify-content: space-around;
+    align-items: space-around;
+}
+
 #top-left {
-    padding: 40px 100px 40px 100px;
-    display: inline-block;
+    border: 2px solid blue;
 }
 
 #top-right {
-    display: inline-block;
-    padding: 40px 100px 40px 100px;
-    margin-bottom: 0;
+    border: 2px solid blue;
+}
+
+#game {
+    margin: 0 auto;
+    text-align: center;
 }
