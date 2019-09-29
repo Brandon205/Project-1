@@ -7,3 +7,6 @@ canvas {
     display: block;
     margin: 50px auto;
 }
+div {
+    border: 2px solid hotpink;
+}
