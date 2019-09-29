@@ -4,9 +4,20 @@ html, body {
     text-align: center;
 }
 canvas {
-    display: block;
-    margin: 50px auto;
+    margin: 0;
 }
 div {
     border: 2px solid hotpink;
+    vertical-align: top;
+    display: inline-block;
+}
+#top-left {
+    padding: 40px 100px 40px 100px;
+    display: inline-block;
+}
+
+#top-right {
+    display: inline-block;
+    padding: 40px 100px 40px 100px;
+    margin-bottom: 0;
 }

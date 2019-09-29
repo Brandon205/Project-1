@@ -1,10 +1,9 @@
 //DOM References 
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-var score = document.getElementById('top-right');
-var gameStatus = document.getElementById('top-left');
+var gameStatus = document.getElementById('top-right');
+var score = document.getElementById('top-left');
 var resetButton = document.getElementById('bottom');
-
 
 //Game Pieces 
 var snake = {
@@ -16,7 +15,6 @@ var snake = {
     mvtY: 0,
     alive: true,
 }
-// let snake = {...snakeStart};
 
 var apple = {
     x: Math.floor(Math.random() * 10) * 40,
@@ -31,13 +29,14 @@ var apple = {
 
 function move() {
     for (let i = 0; i < snake.tail.length; i++) {
-        ctx.fillStyle = "grey";
+        ctx.fillStyle = "green";
         ctx.fillRect(snake.tail[i].x, snake.tail[i].y, 20, 20);
-        if (snake.tail[i] == snake.x && snake.tail[i] == snake.y) {
-            gameOver();
+        if (snake.long > 3) {
+        if (snake.tail[i].x == snake.x && snake.tail[i].y == snake.y) {
+            snake.alive = false;
         }
     }
-    
+    }
 }
 
 function grow() {
@@ -89,7 +88,6 @@ function reset() {
     snake.y = 80;
     snake.long = 1;
     snake.tail = [];
-    
 }
 
 function gameLoop() {
@@ -113,8 +111,8 @@ function gameLoop() {
     if (chomp()) {
         grow();
         apple.newApple();
+        score++;
     }
-
 }
 
 //Event Handlers 
