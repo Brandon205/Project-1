@@ -26,6 +26,13 @@ var chomp = function() {
     if (currentLevel == 2 && apple.x == 80 || apple.x == 300) {
         apple.newApple();
     }
+    if (currentLevel >= 4) {
+        for (let i = 0; i < lvl4Arr.length; i++) {
+            if (apple.x == lvl4Arr[i].x && apple.y == lvl4Arr[i].y) {
+                apple.newApple();
+            }
+        }
+    }
     if (snake.x === apple.x && snake.y === apple.y) {
         grow();
         apple.newApple();
@@ -86,7 +93,17 @@ function gameOver() {
     //Level 3 obstacle detection
     if (currentLevel == 3 && snake.x + 20 > tempVal && snake.x < tempVal + 20 && snake.y + 20 > 170 && snake.y < 230) {
         snake.alive = false;
-        console.log('loss');
+        topRight.textContent = 'Game Over! Press Space to restart';
+    }
+    
+    //Collision detection for randoLevel
+    if (currentLevel >= 4) {
+        for (let i = 0; i < lvl4Arr.length; i++) {
+            if (snake.x + 20 > lvl4Arr[i].x && snake.x < lvl4Arr[i].x + 20 && snake.y + 20 > lvl4Arr[i].y && snake.y < lvl4Arr[i].y + 20) {
+                snake.alive = false;
+                topRight.textContent = 'Game Over! Press Space to restart';
+            }
+        }
     }
 }
 
@@ -103,8 +120,10 @@ function reset() {
     topRight.textContent = "Play Game!"
 }
 
-if (currentLevel == 4) {
-    randoLevel.rect(4);
+function level4Plus() {
+    if (currentLevel >= 4) {
+    randoLevel.rect(currentLevel);
+    }
 }
 
 function gameLoop() {
@@ -118,7 +137,7 @@ function gameLoop() {
     } else if (currentLevel == 3) {
         ctx.fillStyle = "grey";
         level3.rect2(160, 20, 60);
-    } else if (currentLevel == 4) {
+    } else if (currentLevel >= 4) {
         for (let i = 0; i < lvl4Arr.length; i++) {
             ctx.fillStyle = "grey";
             let xval = lvl4Arr[i].x;
@@ -139,7 +158,7 @@ function gameLoop() {
         topRight.textContent = `You Win! Press Space to start`;
         currentLevel++;
         snake.alive = false;
-        console.log(currentLevel);
+        level4Plus();
     }
 }
     //Everything relating to the apple
