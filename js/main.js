@@ -1,3 +1,7 @@
+// Default texts
+topLeft.textContent = `Score: 0`;
+topRight.textContent = `Start Game!`;
+
 //Functions
 function move() {
     for (let i = 0; i < snake.tail.length; i++) {
@@ -23,7 +27,10 @@ var chomp = function() {
         apple.newApple();
     }
     if (snake.x === apple.x && snake.y === apple.y) {
-    return true;
+        grow();
+        apple.newApple();
+        score++;
+        topLeft.textContent = `Score: ${score}`
     } else {
         return false;
     }
@@ -67,28 +74,37 @@ function gameOver() {
         snake.alive = false;
         topRight.textContent = 'Game Over! Press Space to restart';
     }
-    if (currentLevel == 2) { //Level 2 obstacles detection
-     if (snake.x + 20 > 80 && snake.x < 100 && snake.y + 20 > 60 && snake.y < 340) { // Level 2 Left Rectangle
+    //Level 2 obstacles detection
+     if (currentLevel == 2 && snake.x + 20 > 80 && snake.x < 100 && snake.y + 20 > 60 && snake.y < 340) { // Level 2 Left Rectangle
         snake.alive = false;
         topRight.textContent = 'Game Over! Press Space to restart';
     }
-    if (snake.x + 20 > 300 && snake.x < 320 && snake.y + 20 > 60 && snake.y < 340) { // Level 2 Right Rectangle
+    if (currentLevel == 2 && snake.x + 20 > 300 && snake.x < 320 && snake.y + 20 > 60 && snake.y < 340) { // Level 2 Right Rectangle
         snake.alive = false;
         topRight.textContent = 'Game Over! Press Space to restart';
     }
+    //Level 3 obstacle detection
+    if (currentLevel == 3 && snake.x + 20 > tempVal && snake.x < tempVal + 20 && snake.y + 20 > 170 && snake.y < 230) {
+        snake.alive = false;
+        console.log('loss');
+    }
 }
-}
+
 //Very rudimentary reset function 
 function reset() {
     snake.alive = true;
     going(0, 0);
-    snake.x = Math.floor(Math.random() * 10) * 40;
-    snake.y = Math.floor(Math.random() * 10) * 40;
+    snake.x = randoNumber();
+    snake.y = randoNumber();
     snake.long = 1;
     snake.tail = [];
     score = 0;
     topLeft.textContent = `Score: ${score}`;
     topRight.textContent = "Play Game!"
+}
+
+if (currentLevel == 4) {
+    randoLevel.rect(4);
 }
 
 function gameLoop() {
@@ -99,6 +115,16 @@ function gameLoop() {
         ctx.fillStyle = 'grey';
         level2.rect1(80, 60, 20, 280);
         level2.rect1(300, 60, 20, 280);
+    } else if (currentLevel == 3) {
+        ctx.fillStyle = "grey";
+        level3.rect2(160, 20, 60);
+    } else if (currentLevel == 4) {
+        for (let i = 0; i < lvl4Arr.length; i++) {
+            ctx.fillStyle = "grey";
+            let xval = lvl4Arr[i].x;
+            let yval = lvl4Arr[i].y;
+            ctx.fillRect(xval, yval, 20, 20);
+        }
     }
     //Moving the Snake
     if(snake.alive) {
@@ -109,20 +135,27 @@ function gameLoop() {
     if (snake.tail.length > snake.long) {
         snake.tail.shift();
     }
-    if (score >= goal) {
-        topRight.textContent = `You Win!`;
-        clearInterval(gameLoop());
+    if (currentLevel == 1 && score >= goal || currentLevel == 2 && score >= goal2 || currentLevel >= 3 && score > goal3 + currentLevel) {
+        topRight.textContent = `You Win! Press Space to start`;
+        currentLevel++;
+        snake.alive = false;
+        console.log(currentLevel);
     }
 }
     //Everything relating to the apple
     ctx.fillStyle = 'red';
     ctx.fillRect(apple.x, apple.y, 20, 20);
-    if (chomp()) {
-        grow();
-        apple.newApple();
-        score++;
-        topLeft.textContent = `Score: ${score}`
-    }
+    chomp();
+
+    if (currentLevel === 1) {
+            middlePart.textContent = `Goal: ${goal}`;
+        } else if (currentLevel == 2){
+            middlePart.textContent = `Goal: ${goal2}`;
+        } else if (currentLevel == 3) {
+            middlePart.textContent = `Goal: ${goal3}`
+        } else if (currentLevel >= 4) {
+            middlePart.textContent = `Goal: ${goal3 + currentLevel}`
+        }
     gameOver();
 }
 
