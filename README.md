@@ -33,3 +33,17 @@ function grow() {
 ```
 
 Other things that I was able to get working in the MVP version of my project are all of the game over conditions like running into walls and running into yourself, which you can see the logic to up above.
+
+Day 4 - Massive amounts of progress were made this day due to having a good base design laid and planned out, I was able to get about another 100 lines of logic made, moved all of the objects and variables to their own JS file, created multiple level objects so that I could check in the game loop what level I was on and display the blocks for that. By far the toughest thing today was creating more logic in my gameOver function so that the new levels had the correct collision detection based on where the obstacles were being formed. This was also the most impressive thing that I was able to accomplish today, and it wasn't all too bad when making it too. Here is the collision detection for the level that is made with random x and y coordinates along with a differing amount of obstacles based on the level that the player is on.
+```javascript
+    //Collision detection for randoLevel
+if (currentLevel >= 4) {
+    for (let i = 0; i < lvl4Arr.length; i++) {
+        if (snake.x + 20 > lvl4Arr[i].x && snake.x < lvl4Arr[i].x + 20 && snake.y + 20 > lvl4Arr[i].y && snake.y < lvl4Arr[i].y + 20) {
+            snake.alive = false;
+            topRight.textContent = 'Game Over! Press Space to restart';
+        }
+    }
+}
+```
+On day 5 I plan to focus primarily on creating better looking styles along with possibly making some minor animations for the snake.

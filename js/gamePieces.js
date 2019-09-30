@@ -10,11 +10,11 @@ let randoNumber = function() {
     return num;
 }
 
-var goal = 2;
+var goal = 5;
 var goal2 = 5;
-let goal3 = 10;
+let goal3 = 8;
 let score = 0;
-var currentLevel = 4;
+var currentLevel = 1;
 let lvl4Arr = [];
 
 //Game Objects
@@ -67,6 +67,5 @@ var randoLevel = {
             // fillRect(randoNumber, randoNumber, 20, 20);
             lvl4Arr.push({x: randoNumber(), y: randoNumber()});
         }
-        console.log(lvl4Arr);
     }
 }

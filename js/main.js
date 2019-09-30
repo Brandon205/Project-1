@@ -154,6 +154,7 @@ function gameLoop() {
     if (snake.tail.length > snake.long) {
         snake.tail.shift();
     }
+    //Winning Condition
     if (currentLevel == 1 && score >= goal || currentLevel == 2 && score >= goal2 || currentLevel >= 3 && score > goal3 + currentLevel) {
         topRight.textContent = `You Win! Press Space to start`;
         currentLevel++;
@@ -165,15 +166,15 @@ function gameLoop() {
     ctx.fillStyle = 'red';
     ctx.fillRect(apple.x, apple.y, 20, 20);
     chomp();
-
+    //Goal display
     if (currentLevel === 1) {
             middlePart.textContent = `Goal: ${goal}`;
         } else if (currentLevel == 2){
             middlePart.textContent = `Goal: ${goal2}`;
         } else if (currentLevel == 3) {
-            middlePart.textContent = `Goal: ${goal3}`
+            middlePart.textContent = `Goal: ${goal3}`;
         } else if (currentLevel >= 4) {
-            middlePart.textContent = `Goal: ${goal3 + currentLevel}`
+            middlePart.textContent = `Goal: ${goal3 + currentLevel}`;
         }
     gameOver();
 }
