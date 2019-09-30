@@ -4,7 +4,9 @@ var ctx = canvas.getContext('2d');
 var topRight = document.getElementById('top-right');
 var topLeft = document.getElementById('top-left');
 var resetButton = document.getElementById('reset');
+var middlePart = document.getElementById('middle');
 
+var highScore = 0;
 let score = 0;
 
 //Game Pieces 
@@ -28,14 +30,15 @@ var apple = {
 }
 
 //Functions
-
 function move() {
     for (let i = 0; i < snake.tail.length; i++) {
         ctx.fillStyle = "green";
         ctx.fillRect(snake.tail[i].x, snake.tail[i].y, 20, 20);
+        //Check tail x and y's against the head piece
         if (snake.long > 3) {
         if (snake.tail[i].x == snake.x && snake.tail[i].y == snake.y) {
             snake.alive = false;
+            topRight.textContent = 'Game Over! Press Space to restart';
         }
     }
     }
@@ -54,19 +57,30 @@ var chomp = function() {
     }
 }
 
-function movement(evt) {//87 65 83 68
+function movement(evt) {//87 65 83 68 || 38 39 40 37
     switch (evt.keyCode) {
-        case (87): //up
+        case (38): //up
+            if (snake.mvtY != 20) {
             going(0, -1);
+            }
             break;
-        case (68): //right
+        case (39): //right
+            if (snake.mvtX != -20) {
             going(1, 0);
+            }
             break;
-        case (83): //down
+        case (40): //down
+            if (snake.mvtY != -20) {
             going(0, 1);
+            }
             break; 
-        case (65): //left
+        case (37): //left
+            if (snake.mvtX != 20) {
             going(-1, 0);
+            }
+            break;
+        case (32): //spacebar
+            reset();
             break;
     }
 }
@@ -79,10 +93,10 @@ var going = function(x, y) {
 function gameOver() {
     if (snake.x > canvas.width - 20 || snake.x < 0 || snake.y > canvas.height + 20 || snake.y < 0) {
         snake.alive = false;
-        topRight.textContent = 'Game Over';
+        topRight.textContent = 'Game Over! Press Space to restart';
     }
 }
-
+//Very rudimentary reset function 
 function reset() {
     snake.alive = true;
     going(0, 0);
@@ -98,7 +112,7 @@ function reset() {
 function gameLoop() {
     ctx.fillStyle = "black";
     ctx.fillRect(0, 0, canvas.clientWidth, canvas.height);//drawing canvas 
-    
+    //Moving the Snake
     if(snake.alive) {
     snake.x += snake.mvtX;
     snake.y += snake.mvtY;
@@ -107,26 +121,26 @@ function gameLoop() {
     if (snake.tail.length > snake.long) {
         snake.tail.shift();
     }
+    if (score > highScore) {
+        highScore = score;
+        middlePart.textContent = `Highscore: ${highScore}`;
+    }
 }
-    gameOver();
-
     ctx.fillStyle = 'red';
     ctx.fillRect(apple.x, apple.y, 20, 20);
-
+    //Checking if the snake has eaten an apple
     if (chomp()) {
         grow();
         apple.newApple();
         score++;
         topLeft.textContent = `Score: ${score}`
     }
+    gameOver();
 }
 
 //Event Handlers 
 document.addEventListener('keydown', function(e) {
     movement(e);
 })
-
-
-resetButton.addEventListener('click', reset);
 
 setInterval(gameLoop, 1000/8);

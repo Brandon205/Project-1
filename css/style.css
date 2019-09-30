@@ -7,7 +7,6 @@ canvas {
     display: block;
 }
 div {
-    /* border: 2px solid hotpink; */
     vertical-align: top;
     display: inline-block;
     margin: 0;
@@ -29,6 +28,10 @@ button {
 }
 
 #top-right {
+    border: 2px solid blue;
+}
+
+#middle {
     border: 2px solid blue;
 }
 
