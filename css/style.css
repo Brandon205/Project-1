@@ -1,26 +1,79 @@
 body {
     text-align: center;
+    font-size: 14px;
+    font-family: 'Press Start 2P', cursive;
+    background: linear-gradient(to top, #acb6e5, #86fde8);
+    min-height: 100vh;
 }
 
 canvas {
     margin: 0;
     display: block;
 }
+
 div {
     vertical-align: top;
     display: inline-block;
     margin: 0;
 }
 
-button {
-    display: block;
-    margin: 20px auto;
+img {
+    max-width: 50px;
+    max-height: 50px;
 }
 
 .flex {
     display: flex;
     justify-content: space-around;
     align-items: space-around;
+    padding: 10px 5px;
+}
+
+.controller {
+    display: grid;
+    min-height: 100px;
+    max-width: 400;
+    grid-template-columns: 100px 100px 100px;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: 
+    "blank up blank",
+    "left blank right",
+    "blank down blank";
+    justify-content: center;
+    font-family: sans-serif;
+    font-size: 20px;
+}
+
+#blank {
+    grid-area: "blank";
+    /* background: grey; */
+}
+
+#up {
+    grid-area: "up";
+    background: white;
+}
+#right {
+    grid-area: "right";
+    background: white;
+}
+#down {
+    grid-area: "down";
+    background: white;
+}
+#left {
+    grid-area: "left";
+    background: white;
+}
+
+#github {
+    float: left;
+    margin-right: 20px;
+}
+
+#linkedin {
+    float: right;
+    margin-left: 20px;
 }
 
 #top-left {
@@ -29,6 +82,7 @@ button {
 
 #top-right {
     border: 2px solid blue;
+    padding: 5px auto;
 }
 
 #middle {
@@ -36,6 +90,29 @@ button {
 }
 
 #game {
-    margin: 0 auto;
+    margin: 20px auto 0 auto;
     text-align: center;
+    box-shadow: 10px 10px 10px #666666;
+}
+
+#canvas-div {
+    border: 5px solid blue;
+}
+
+@media screen and (min-width: 600px) {
+    body {
+        font-size: 17px;
+    }
+    
+    .controller {
+        display: none;
+    }
+
+    .footer {
+        bottom: 10px;
+    }
+
+    #game {
+        margin: 40px auto 0 auto;
+    }
 }

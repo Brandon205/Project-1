@@ -5,6 +5,11 @@ var topRight = document.getElementById('top-right');
 var topLeft = document.getElementById('top-left');
 var resetButton = document.getElementById('reset');
 var middlePart = document.getElementById('middle');
+var upArrow = document.getElementById('up');
+var rightArrow = document.getElementById('right');
+var downArrow = document.getElementById('down');
+var leftArrow = document.getElementById('left');
+
 let randoNumber = function() {
     let num = Math.floor(Math.random() * 10) * 40;
     return num;
@@ -37,13 +42,12 @@ var apple = {
     }
 }
 
-var level1 = {
-    //level 1 might have no obstacles
-}
 // console.log(level1.rect1);
 var level2 = {
     //obstacles
     rect1: function(x, y, w, h) {
+        ctx.lineJoin = "round";
+        ctx.lineWidth = "7";
         ctx.fillRect(x, y, w, h);
     }
 }

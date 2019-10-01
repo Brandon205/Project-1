@@ -5,13 +5,13 @@ topRight.textContent = `Start Game!`;
 //Functions
 function move() {
     for (let i = 0; i < snake.tail.length; i++) {
-        ctx.fillStyle = "green";
+        ctx.fillStyle = "#35ce07"
         ctx.fillRect(snake.tail[i].x, snake.tail[i].y, 20, 20);
         //Check tail x and y's against the head piece
         if (snake.long > 3) {
         if (snake.tail[i].x == snake.x && snake.tail[i].y == snake.y) {
             snake.alive = false;
-            topRight.textContent = 'Game Over! Press Space to restart';
+            topRight.textContent = 'Game Over! Press Space!';
         }
     }
     }
@@ -77,23 +77,23 @@ var going = function(x, y) {
 }
 
 function gameOver() {
-    if (snake.x > canvas.width - 20 || snake.x < 0 || snake.y > canvas.height + 20 || snake.y < 0) {//Levels 1-3 wall detection
+    if (snake.x > canvas.width - 20 || snake.x < 0 || snake.y + 20 > canvas.height || snake.y < 0) {//Levels 1-3 wall detection
         snake.alive = false;
-        topRight.textContent = 'Game Over! Press Space to restart';
+        topRight.textContent = 'Game Over! Press Space!';
     }
     //Level 2 obstacles detection
      if (currentLevel == 2 && snake.x + 20 > 80 && snake.x < 100 && snake.y + 20 > 60 && snake.y < 340) { // Level 2 Left Rectangle
         snake.alive = false;
-        topRight.textContent = 'Game Over! Press Space to restart';
+        topRight.textContent = 'Game Over! Press Space!';
     }
     if (currentLevel == 2 && snake.x + 20 > 300 && snake.x < 320 && snake.y + 20 > 60 && snake.y < 340) { // Level 2 Right Rectangle
         snake.alive = false;
-        topRight.textContent = 'Game Over! Press Space to restart';
+        topRight.textContent = 'Game Over! Press Space!';
     }
     //Level 3 obstacle detection
     if (currentLevel == 3 && snake.x + 20 > tempVal && snake.x < tempVal + 20 && snake.y + 20 > 170 && snake.y < 230) {
         snake.alive = false;
-        topRight.textContent = 'Game Over! Press Space to restart';
+        topRight.textContent = 'Game Over! Press Space!';
     }
     
     //Collision detection for randoLevel
@@ -101,7 +101,7 @@ function gameOver() {
         for (let i = 0; i < lvl4Arr.length; i++) {
             if (snake.x + 20 > lvl4Arr[i].x && snake.x < lvl4Arr[i].x + 20 && snake.y + 20 > lvl4Arr[i].y && snake.y < lvl4Arr[i].y + 20) {
                 snake.alive = false;
-                topRight.textContent = 'Game Over! Press Space to restart';
+                topRight.textContent = 'Game Over! Press Space!';
             }
         }
     }
@@ -127,19 +127,19 @@ function level4Plus() {
 }
 
 function gameLoop() {
-    ctx.fillStyle = "black";
+    ctx.fillStyle = '#047c04';
     ctx.fillRect(0, 0, canvas.width, canvas.height); // Drawing canvas 
     //Drawing the obstacles for the specific level
     if (currentLevel == 2) {
-        ctx.fillStyle = 'grey';
+        ctx.fillStyle = '#141414';
         level2.rect1(80, 60, 20, 280);
         level2.rect1(300, 60, 20, 280);
     } else if (currentLevel == 3) {
-        ctx.fillStyle = "grey";
+        ctx.fillStyle = "#141414";
         level3.rect2(160, 20, 60);
     } else if (currentLevel >= 4) {
         for (let i = 0; i < lvl4Arr.length; i++) {
-            ctx.fillStyle = "grey";
+            ctx.fillStyle = "#141414";
             let xval = lvl4Arr[i].x;
             let yval = lvl4Arr[i].y;
             ctx.fillRect(xval, yval, 20, 20);
@@ -155,8 +155,8 @@ function gameLoop() {
         snake.tail.shift();
     }
     //Winning Condition
-    if (currentLevel == 1 && score >= goal || currentLevel == 2 && score >= goal2 || currentLevel >= 3 && score > goal3 + currentLevel) {
-        topRight.textContent = `You Win! Press Space to start`;
+    if (currentLevel == 1 && score >= goal || currentLevel == 2 && score >= goal2 || currentLevel == 3 && score >= goal3 || currentLevel >= 4 && score >= goal3 + currentLevel) {
+        topRight.textContent = `You Win! Press Space!`;
         currentLevel++;
         snake.alive = false;
         level4Plus();
@@ -181,7 +181,28 @@ function gameLoop() {
 
 //Event Handlers 
 document.addEventListener('keydown', function(e) {
+    e.preventDefault();
     movement(e);
-})
+});
+upArrow.addEventListener('click', function(e) {
+    e.preventDefault();
+    let up = {keyCode: 38};
+    movement(up);
+});
+rightArrow.addEventListener('click', function(e) {
+    e.preventDefault();
+    let right = {keyCode: 39};
+    movement(right);
+});
+downArrow.addEventListener('click', function(e) {
+    e.preventDefault();
+    let down = {keyCode: 40};
+    movement(down);
+});
+leftArrow.addEventListener('click', function(e) {
+    e.preventDefault();
+    let left = {keyCode: 37};
+    movement(left);
+});
 
 setInterval(gameLoop, 1000/8);
