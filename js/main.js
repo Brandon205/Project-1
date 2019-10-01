@@ -98,7 +98,7 @@ function gameOver() {
         topRight.textContent = 'Game Over! Press Space!';
     }
     //Level 3 obstacle detection
-    if (currentLevel == 3 && snake.x + 20 > tempVal && snake.x < tempVal + 20 && snake.y + 20 > 170 && snake.y < 230) {
+    if (currentLevel == 3 && snake.x + 20 > tempVal && snake.x < tempVal + 20 && snake.y + 20 > 160 && snake.y < 220) {
         snake.alive = false;
         topRight.textContent = 'Game Over! Press Space!';
     }
