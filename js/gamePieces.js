@@ -5,10 +5,15 @@ var topRight = document.getElementById('top-right');
 var topLeft = document.getElementById('top-left');
 var resetButton = document.getElementById('reset');
 var middlePart = document.getElementById('middle');
+
 var upArrow = document.getElementById('up');
 var rightArrow = document.getElementById('right');
 var downArrow = document.getElementById('down');
 var leftArrow = document.getElementById('left');
+
+var head = document.getElementById('head');
+var body = document.getElementById('body');
+var tail = document.getElementById('tail');
 
 let randoNumber = function() {
     let num = Math.floor(Math.random() * 10) * 40;

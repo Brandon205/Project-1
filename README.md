@@ -8,7 +8,7 @@ The technologies that I used are:
 - Vanilla JavaScript
 
 
-## Day 1 - 
+## Day 1 
     On day one my main goal was to make up a plan that was easy to fall back on when thinking of the different actions that my game
 will have to do. Also in my plan was a good wireframe of the different parts to my code, this is a vital part to planning as it allows you to look back on it when needing to see what needs to do what and when. 
     Another big part of my planning stage was making a list of goals and stretch goals, which were goals that would not be included
@@ -20,7 +20,7 @@ Also on day 1 I began coding, I was able to get the basic canvas drawn, the game
 ![Wireframe1](img/Wireframe.png)
 ![Wireframe2](img/stretchGoals.png)
 
-## Day 2 & 3 - 
+## Day 2 & 3 
     Day 2 was a very big day as far as progress goes, my goal was to try to get the MVP done by day 3. On day 2 I was faced with the
 challenge of making most of the game logic including the growth function that I knew I would need to make. This was by far the most challenging part of the project so far because not only was I going to need to rewrite my movement function, but I was also going to need to make a new one that would apply to any tail pieces that would be added to the array. To solve this issue I first started using for loops to loop through all of the tail pieces and then moving them from inside of that loop, but there were problems with that at first where because of the names that I gave everything it was very wordy and confusing. Since then I was able to slim it down and have it make sense too. Below the move function there is the grow function which is pretty simple, it just adds an object to the array of tail parts, and increases the length counter I have.
 
@@ -47,7 +47,7 @@ function grow() {
 
 Other things that I was able to get working in the MVP version of my project are all of the game over conditions like running into walls and running into yourself, which you can see the logic to up above.
 
-## Day 4 - 
+## Day 4 
     Massive amounts of progress were made this day due to having a good base design laid and planned out, I was able to get about
 another 100 lines of logic made, moved all of the objects and variables to their own JS file, created multiple level objects so that I could check in the game loop what level I was on and display the blocks for that. By far the toughest thing today was creating more logic in my gameOver function so that the new levels had the correct collision detection based on where the obstacles were being formed. This was also the most impressive thing that I was able to accomplish today, and it wasn't all too bad when making it too. Here is the collision detection for the level that is made with random x and y coordinates along with a differing amount of obstacles based on the level that the player is on.
 ```javascript
@@ -61,6 +61,6 @@ if (currentLevel >= 4) {
     }
 }
 ```
-## Day 5 - 
+## Day 5 
     Today the focus for me was to style the site, however I also added other things like a very basic and mostly working level
-selector using the keys L and K, and touch controls for when the screen size is less than 600px. After doing those things though I was able to stylize the website, mostly just changing around the colors and making things look decent.
+selector using the keys L and K, and touch controls for when the screen size is less than 600px. After doing those things though I was able to stylize the website, mostly just changing around the colors and making things look decent. I also tested the game, and went through the levels for a while and by doing this I was able to find a few minor bugs, and went back and fixed those.

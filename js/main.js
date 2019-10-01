@@ -5,8 +5,15 @@ topRight.textContent = `Start Game!`;
 //Functions
 function move() {
     for (let i = 0; i < snake.tail.length; i++) {
-        ctx.fillStyle = "#35ce07"
-        ctx.fillRect(snake.tail[i].x, snake.tail[i].y, 20, 20);
+        // ctx.fillStyle = "#35ce07"
+        // ctx.fillRect(snake.tail[i].x, snake.tail[i].y, 20, 20);
+        if (snake.tail[i] == snake.tail[snake.tail.length - 1]) {
+            ctx.drawImage(head, snake.tail[snake.tail.length -1].x, snake.tail[snake.tail.length -1].y, 23, 23);
+        } else if (snake.tail[i] == snake.tail[0]) {
+            ctx.drawImage(tail, snake.tail[0].x, snake.tail[0].y, 23, 23);
+        } else {
+        ctx.drawImage(body, snake.tail[i].x, snake.tail[i].y, 23, 23);
+        }
         //Check tail x and y's against the head piece
         if (snake.long > 3) {
         if (snake.tail[i].x == snake.x && snake.tail[i].y == snake.y) {
@@ -136,6 +143,7 @@ function level4Plus() {
 function gameLoop() {
     ctx.fillStyle = '#047c04';
     ctx.fillRect(0, 0, canvas.width, canvas.height); // Drawing canvas 
+    // ctx.drawImage(head, 0, 0, 20, 20);
     //Drawing the obstacles for the specific level
     if (currentLevel == 2) {
         ctx.fillStyle = '#141414';
