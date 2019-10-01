@@ -68,6 +68,13 @@ function movement(evt) {//87 65 83 68 || 38 39 40 37
         case (32): //spacebar for resetting
             reset();
             break;
+        case (76): //L - for increasing the currentLevel
+            currentLevel++;
+            level4Plus();
+            break;
+        case (75): //K - for decreasing the currentLevel
+            currentLevel--;
+            level4Plus();
     }
 }
 

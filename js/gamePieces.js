@@ -46,8 +46,6 @@ var apple = {
 var level2 = {
     //obstacles
     rect1: function(x, y, w, h) {
-        ctx.lineJoin = "round";
-        ctx.lineWidth = "7";
         ctx.fillRect(x, y, w, h);
     }
 }
@@ -67,9 +65,13 @@ var level3 = {
 
 var randoLevel = {
     rect: function(amount) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < amount; i++) {
-            // fillRect(randoNumber, randoNumber, 20, 20);
             lvl4Arr.push({x: randoNumber(), y: randoNumber()});
+            // fillRect(randoNumber, randoNumber, 20, 20);
+        } 
+        if (lvl4Arr.length > amount) {
+            lvl4Arr.pop();
         }
     }
 }
