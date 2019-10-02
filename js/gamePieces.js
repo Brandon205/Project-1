@@ -6,6 +6,7 @@ var topLeft = document.getElementById('top-left');
 var resetButton = document.getElementById('reset');
 var middlePart = document.getElementById('middle');
 
+var toggle = true;
 var upArrow = document.getElementById('up');
 var rightArrow = document.getElementById('right');
 var downArrow = document.getElementById('down');
@@ -15,7 +16,6 @@ var radians = Math.PI/180;
 var head = document.getElementById('head');
 var body = document.getElementById('body');
 var tail = document.getElementById('tail');
-var applePic = document.getElementById('apple');
 var grass = document.getElementById('grass');
 var apples = document.getElementById('apples');
 var wall = document.getElementById('wall');
@@ -29,7 +29,7 @@ var goal = 5;
 var goal2 = 5;
 let goal3 = 8;
 let score = 0;
-var currentLevel = 3;
+var currentLevel = 1;
 let lvl4Arr = [];
 
 //Game Objects
@@ -61,6 +61,7 @@ var apple = {
         apple.x = randoNumber();
         apple.y = randoNumber();
     },
+    
     count: 1,
     sprite: function() {
         if (this.count == 1) {
@@ -86,7 +87,7 @@ var level3 = {
             this.xVel *= -1;
         }
         ctx.drawImage(wall, 0, 0, 20, 140, tempVal, yVal, wVal, hVal);
-    },
+    }
 }
 
 var randoLevel = {

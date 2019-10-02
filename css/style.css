@@ -33,6 +33,11 @@ img {
     display: none;
 }
 
+.reset {
+    padding: 10px;
+    margin: 10px auto;
+}
+
 .controller {
     display: grid;
     min-height: 100px;
@@ -46,6 +51,7 @@ img {
     justify-content: center;
     font-family: sans-serif;
     font-size: 20px;
+    margin-top: 15px;
 }
 
 #blank {
@@ -114,6 +120,10 @@ img {
 
     .footer {
         bottom: 10px;
+    }
+
+    .reset {
+        display: none;
     }
 
     #game {

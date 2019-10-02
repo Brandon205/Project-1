@@ -3,19 +3,20 @@ topLeft.textContent = `Score: 0`;
 topRight.textContent = `Start Game!`;
 
 //Functions
-
 function move() {
     for (let i = 0; i < snake.tail.length; i++) {
-        // ctx.fillStyle = "#35ce07"
-        // ctx.fillRect(snake.tail[i].x, snake.tail[i].y, 20, 20);
-        // if statements for turn conditions and what that does to the images hopefully 
-
         if (snake.tail[i] == snake.tail[snake.tail.length - 1]) {
             ctx.drawImage(head, snake.tail[snake.tail.length -1].x, snake.tail[snake.tail.length - 1].y, 25, 25);
+            // ctx.fillStyle = "#006108";
+            // ctx.fillRect(snake.tail[i].x, snake.tail[i].y, 20, 20);
         } else if (snake.tail[i] == snake.tail[0]) {
             ctx.drawImage(tail, snake.tail[0].x, snake.tail[0].y, 25, 25);
+            // ctx.fillStyle = "#003805";
+            // ctx.fillRect(snake.tail[i].x, snake.tail[i].y, 20, 20);
         } else {
-        ctx.drawImage(body, snake.tail[i].x, snake.tail[i].y, 25, 25);
+            ctx.drawImage(body, snake.tail[i].x, snake.tail[i].y, 25, 25);
+            // ctx.fillStyle = "#004e07";
+            // ctx.fillRect(snake.tail[i].x, snake.tail[i].y, 20, 20);
         }
         //Check tail x and y's against the head piece
         if (snake.long > 3) {
@@ -144,8 +145,6 @@ function level4Plus() {
 }
 
 function gameLoop() {
-    // ctx.fillStyle = '#047c04';
-    // ctx.fillRect(0, 0, canvas.width, canvas.height); // Drawing canvas 
     ctx.drawImage(grass, 0, 0, canvas.width, canvas.height);
     //Drawing the obstacles for the specific level
     if (currentLevel == 2) {
@@ -158,7 +157,7 @@ function gameLoop() {
             ctx.fillStyle = "#141414";
             let xval = lvl4Arr[i].x;
             let yval = lvl4Arr[i].y;
-            ctx.fillRect(xval, yval, 20, 20);
+            ctx.drawImage(wall, 0, 0, 34, 34, xval, yval, 23, 23);
         }
     }
     //Moving the Snake
@@ -177,11 +176,8 @@ function gameLoop() {
         snake.alive = false;
         level4Plus();
     }
-}
+    }
     //Everything relating to the apple
-    // ctx.fillStyle = 'red';
-    // ctx.fillRect(apple.x, apple.y, 20, 20);
-    // ctx.drawImage(applePic, apple.x, apple.y, 25, 25);
     chomp();
     apple.sprite();
     //Goal display
@@ -202,21 +198,29 @@ document.addEventListener('keydown', function(e) {
     e.preventDefault();
     movement(e);
 });
+
+document.querySelector(".reset").addEventListener('click', function() {
+    reset();
+});
+
 upArrow.addEventListener('click', function(e) {
     e.preventDefault();
     let up = {keyCode: 38};
     movement(up);
 });
+
 rightArrow.addEventListener('click', function(e) {
     e.preventDefault();
     let right = {keyCode: 39};
     movement(right);
 });
+
 downArrow.addEventListener('click', function(e) {
     e.preventDefault();
     let down = {keyCode: 40};
     movement(down);
 });
+
 leftArrow.addEventListener('click', function(e) {
     e.preventDefault();
     let left = {keyCode: 37};
