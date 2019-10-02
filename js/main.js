@@ -1,39 +1,62 @@
-// Default texts
-topLeft.textContent = `Score: 0`;
-topRight.textContent = `Start Game!`;
-
 //Functions
-function move() {
-    for (let i = 0; i < snake.tail.length; i++) {
-        if (snake.tail[i] == snake.tail[snake.tail.length - 1]) {
-            ctx.drawImage(head, snake.tail[snake.tail.length -1].x, snake.tail[snake.tail.length - 1].y, 25, 25);
-            // ctx.fillStyle = "#006108";
-            // ctx.fillRect(snake.tail[i].x, snake.tail[i].y, 20, 20);
-        } else if (snake.tail[i] == snake.tail[0]) {
-            ctx.drawImage(tail, snake.tail[0].x, snake.tail[0].y, 25, 25);
-            // ctx.fillStyle = "#003805";
-            // ctx.fillRect(snake.tail[i].x, snake.tail[i].y, 20, 20);
-        } else {
-            ctx.drawImage(body, snake.tail[i].x, snake.tail[i].y, 25, 25);
-            // ctx.fillStyle = "#004e07";
-            // ctx.fillRect(snake.tail[i].x, snake.tail[i].y, 20, 20);
-        }
-        //Check tail x and y's against the head piece
-        if (snake.long > 3) {
-        if (snake.tail[i].x == snake.x && snake.tail[i].y == snake.y) {
-            snake.alive = false;
-            topRight.textContent = 'Game Over! Press Space!';
-        }
-    }
+function reset() { //Very rudimentary reset function 
+    going(0, 0);
+    snake = {...snakeStart};
+    snake.tail.length = 0;
+    snake.x = randoNumber();
+    snake.y = randoNumber();
+    score = 0;
+    topLeft.textContent = `Score: ${score}`;
+    topRight.textContent = "Play Game!"
+}
+
+function checkDirection(x, y) { // Takes in a direction and calls move() with a degree direction
+    if (x == 0 &&  y == -20) { // up
+        move(0);
+    } else if (x == 0 && y == 20) { // down
+        move(180);
+    } else if (x == -20 && y == 0) { // left
+        move(270);
+    } else if (x == 20 && y == 0) { // right
+        move(90);
+    } else if (x == 0 && y == 0) { // start
+        move(0);
     }
 }
 
-function grow() {
+function move(dir) { // Takes in a direction from checkDirection() and changes the head direction, displays it and the body, & checks for body collision
+    let tail = snake.tail;
+    for (let i = 0; i < tail.length; i++) {
+        let headDir = head0;
+        if (dir == 0) {
+            headDir = head0;
+        } else if (dir == 90) {
+            headDir = head90;
+        } else if (dir == 180) {
+            headDir = head180;
+        } else if (dir == 270) {
+            headDir = head270;
+        }
+        if (tail[i] == tail[tail.length - 1]) {
+            ctx.drawImage(headDir, tail[tail.length -1].x, tail[tail.length - 1].y, 25, 25);
+        } else {
+            ctx.drawImage(body, tail[i].x, tail[i].y, 25, 25);
+        }
+        if (snake.long > 3) { //Check tail x and y's against the head piece
+            if (tail[i].x == snake.x && snake.tail[i].y == snake.y) {
+                snake.alive = false;
+                topRight.textContent = 'Game Over! Press Space!';
+            }
+        }
+    }
+}
+
+function grow() { // Will add a "tail" piece to the start of the snake.tail array and increase the length counter 
     snake.tail.push({x: snake.x, y: snake.y});
     snake.long++;
 }
 
-var chomp = function() {
+var chomp = function() { // Will check if apple is on top of wall, if snake is on top of a apple it will: call grow(), make a newApple(), score++, & update score 
     if (currentLevel == 2 && apple.x == 80 || apple.x == 300) {
         apple.newApple();
     }
@@ -54,29 +77,37 @@ var chomp = function() {
     }
 }
 
-function movement(evt) {//87 65 83 68 || 38 39 40 37
+var going = function(x, y) { // Converts a direction to a mvt var in snake so that I can later add it to the snake.x and snake.y
+    snake.mvtX = x * 20;
+    snake.mvtY = y * 20;
+}
+
+function movement(evt) {// Will take in a keycode and call going() with the corresponding direction the snake needs to move
     switch (evt.keyCode) {
-        case (38): //up
+        case (38): // up
             if (snake.mvtY != 20) {
             going(0, -1);
             }
             break;
-        case (39): //right
+        case (39): // right
             if (snake.mvtX != -20) {
             going(1, 0);
             }
+            checkDirection(90);
             break;
-        case (40): //down
+        case (40): // down
             if (snake.mvtY != -20) {
             going(0, 1);
             }
+            checkDirection(180);
             break; 
-        case (37): //left
+        case (37): // left
             if (snake.mvtX != 20) {
             going(-1, 0);
             }
+            checkDirection(270);
             break;
-        case (32): //spacebar for resetting
+        case (32): // spacebar for resetting
             reset();
             break;
         case (76): //L - for increasing the currentLevel
@@ -89,27 +120,20 @@ function movement(evt) {//87 65 83 68 || 38 39 40 37
     }
 }
 
-var going = function(x, y) {
-    snake.mvtX = x * 20;
-    snake.mvtY = y * 20;
-}
-
-function gameOver() {
+function gameOver() { // This big boy has the different levels and their walls for collision detection 
     if (snake.x > canvas.width - 20 || snake.x < 0 || snake.y + 20 > canvas.height || snake.y < 0) {//Levels 1-3 wall detection
         snake.alive = false;
         topRight.textContent = 'Game Over! Press Space!';
     }
+
     //Level 2 obstacles detection
-     if (currentLevel == 2 && snake.x + 20 > 80 && snake.x < 100 && snake.y + 20 > 60 && snake.y < 340) { // Level 2 Left Rectangle
+    if (currentLevel == 2 && snake.x + 20 > 80 && snake.x < 100 && snake.y + 20 > 60 && snake.y < 340 || currentLevel == 2 && snake.x + 20 > 300 && snake.x < 320 && snake.y + 20 > 60 && snake.y < 340) { // Level 2 wall detection
         snake.alive = false;
         topRight.textContent = 'Game Over! Press Space!';
     }
-    if (currentLevel == 2 && snake.x + 20 > 300 && snake.x < 320 && snake.y + 20 > 60 && snake.y < 340) { // Level 2 Right Rectangle
-        snake.alive = false;
-        topRight.textContent = 'Game Over! Press Space!';
-    }
+
     //Level 3 obstacle detection
-    if (currentLevel == 3 && snake.x + 20 > tempVal && snake.x < tempVal + 20 && snake.y + 20 > 140 && snake.y < 280) {
+    if (currentLevel == 3 && snake.x + 20 > xVal && snake.x < xVal + 20 && snake.y + 20 > 140 && snake.y < 280) {
         snake.alive = false;
         topRight.textContent = 'Game Over! Press Space!';
     }
@@ -125,29 +149,15 @@ function gameOver() {
     }
 }
 
-//Very rudimentary reset function 
-function reset() {
-    snake.alive = true;
-    going(0, 0);
-    snake.x = randoNumber();
-    snake.y = randoNumber();
-    snake.long = 1;
-    snake.tail = [];
-    score = 0;
-    topLeft.textContent = `Score: ${score}`;
-    topRight.textContent = "Play Game!"
-}
-
-function level4Plus() {
+function level4Plus() { // Will call the random rectangle generator with the amount set to the currentLevel
     if (currentLevel >= 4) {
     randoLevel.rect(currentLevel);
     }
 }
 
-function gameLoop() {
+function gameLoop() { // Where it all comes together and loops through, nearly everything is called from here
     ctx.drawImage(grass, 0, 0, canvas.width, canvas.height);
-    //Drawing the obstacles for the specific level
-    if (currentLevel == 2) {
+    if (currentLevel == 2) { //Drawing the obstacles for the specific level
         ctx.drawImage(wall, 80, 60, 20, 280);
         ctx.drawImage(wall, 300, 60, 20, 280);
     } else if (currentLevel == 3) {
@@ -160,28 +170,27 @@ function gameLoop() {
             ctx.drawImage(wall, 0, 0, 34, 34, xval, yval, 23, 23);
         }
     }
-    //Moving the Snake
-    if(snake.alive) {
-    snake.x += snake.mvtX;
-    snake.y += snake.mvtY;
-    move();
-    snake.tail.push({x: snake.x, y: snake.y});
-    if (snake.tail.length > snake.long) {
-        snake.tail.shift();
+
+    if(snake.alive) { // Everything relating to the snake
+        snake.x += snake.mvtX;
+        snake.y += snake.mvtY;
+        checkDirection(snake.mvtX, snake.mvtY);
+        snake.tail.push({x: snake.x, y: snake.y});
+        if (snake.tail.length > snake.long) {
+            snake.tail.shift();
+        }
+        if (currentLevel == 1 && score >= goal || currentLevel == 2 && score >= goal2 || currentLevel == 3 && score >= goal3 || currentLevel >= 4 && score >= goal3 + currentLevel) { // Winning conditions
+            topRight.textContent = `You Win! Press Space!`;
+            currentLevel++;
+            snake.alive = false;
+            level4Plus();
+        }
     }
-    //Winning Condition
-    if (currentLevel == 1 && score >= goal || currentLevel == 2 && score >= goal2 || currentLevel == 3 && score >= goal3 || currentLevel >= 4 && score >= goal3 + currentLevel) {
-        topRight.textContent = `You Win! Press Space!`;
-        currentLevel++;
-        snake.alive = false;
-        level4Plus();
-    }
-    }
-    //Everything relating to the apple
-    chomp();
+
+    chomp(); //Everything relating to the apple
     apple.sprite();
-    //Goal display
-    if (currentLevel === 1) {
+
+    if (currentLevel === 1) { //Goal display
             middlePart.textContent = `Goal: ${goal}`;
         } else if (currentLevel == 2){
             middlePart.textContent = `Goal: ${goal2}`;
@@ -190,6 +199,7 @@ function gameLoop() {
         } else if (currentLevel >= 4) {
             middlePart.textContent = `Goal: ${goal3 + currentLevel}`;
         }
+
     gameOver();
 }
 

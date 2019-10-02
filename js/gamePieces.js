@@ -1,4 +1,4 @@
-//DOM and misc references
+//DOM references
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
 var topRight = document.getElementById('top-right');
@@ -6,16 +6,18 @@ var topLeft = document.getElementById('top-left');
 var resetButton = document.getElementById('reset');
 var middlePart = document.getElementById('middle');
 
-var toggle = true;
+// References for the mobile buttons
 var upArrow = document.getElementById('up');
 var rightArrow = document.getElementById('right');
 var downArrow = document.getElementById('down');
 var leftArrow = document.getElementById('left');
-var radians = Math.PI/180;
 
-var head = document.getElementById('head');
+// All of the sprites used
+var head0 = document.getElementById('head');
+var head90 = document.getElementById('head90');
+var head180 = document.getElementById('head180');
+var head270 = document.getElementById('head270');
 var body = document.getElementById('body');
-var tail = document.getElementById('tail');
 var grass = document.getElementById('grass');
 var apples = document.getElementById('apples');
 var wall = document.getElementById('wall');
@@ -25,15 +27,14 @@ let randoNumber = function() {
     return num;
 }
 
-var goal = 5;
-var goal2 = 5;
-let goal3 = 8;
+let goal = 5;
+let goal2 = 5;
 let score = 0;
-var currentLevel = 1;
+let currentLevel = 1;
 let lvl4Arr = [];
 
 //Game Objects
-var snake = {
+var snakeStart = {
     tail: [],
     long: 1,
     x: 20,
@@ -42,8 +43,9 @@ var snake = {
     mvtY: 0,
     alive: true,
 }
+let snake = {...snakeStart}; // For resetting 
 
-var appleObj = {
+var appleObj = { // For the animation
     apple1: {
         x: 0,
         y: 2,
@@ -61,7 +63,6 @@ var apple = {
         apple.x = randoNumber();
         apple.y = randoNumber();
     },
-    
     count: 1,
     sprite: function() {
         if (this.count == 1) {
@@ -73,20 +74,20 @@ var apple = {
         }
         
     }
-    
 }
 
-let tempVal = 30
+let goal3 = 8;
+let xVal = 30;
 var level3 = {
     xVel: 8,
     rect2: function(yVal, wVal, hVal) {
-        tempVal += this.xVel;
-        if (tempVal > 360) {
+        xVal += this.xVel;
+        if (xVal > 360) {
             this.xVel *= -1;
-        } else if (tempVal < 20) {
+        } else if (xVal < 20) {
             this.xVel *= -1;
         }
-        ctx.drawImage(wall, 0, 0, 20, 140, tempVal, yVal, wVal, hVal);
+        ctx.drawImage(wall, 0, 0, 20, 140, xVal, yVal, wVal, hVal);
     }
 }
 

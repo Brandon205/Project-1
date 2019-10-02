@@ -64,3 +64,18 @@ if (currentLevel >= 4) {
 ## Day 5 
     Today the focus for me was to style the site, however I also added other things like a very basic and mostly working level
 selector using the keys L and K, and touch controls for when the screen size is less than 600px. After doing those things though I was able to stylize the website, mostly just changing around the colors and making things look decent. I also tested the game, and went through the levels for a while and by doing this I was able to find a few minor bugs, and went back and fixed those.
+
+## Day 6 
+    Today I was able to continue takling the challenge of adding sprites and animations that I had started yesterday. The biggest challenge was making the snake turn when it needed to be facing another direction. To solve this I ended up just making 4 separate head files and displaying them based on the direction that the snake was going to be facing. The apple was also interesting to make because I had to make it so loop through different sections of the spritesheet. In my case there was only 2 different sprites so I just made a simple if statement and a counter as seen below. Other than that I designed all of the sprites on make8bitart.com and put them into the game.
+```javascript
+    sprite: function() { // This code is inside of an object, and appleObj is a separate object with coordinates 
+        if (this.count == 1) {
+            ctx.drawImage(apples, appleObj.apple1.x, appleObj.apple1.y, 24, 24, this.x, this.y, 23, 23);
+            this.count++;
+        } else if (this.count == 2) {
+            ctx.drawImage(apples, appleObj.apple2.x, appleObj.apple2.y, 24, 24, this.x, this.y + 1, 23, 23);
+            this.count--;
+        }
+        
+    }
+```
