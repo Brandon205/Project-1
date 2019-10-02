@@ -3,16 +3,19 @@ topLeft.textContent = `Score: 0`;
 topRight.textContent = `Start Game!`;
 
 //Functions
+
 function move() {
     for (let i = 0; i < snake.tail.length; i++) {
         // ctx.fillStyle = "#35ce07"
         // ctx.fillRect(snake.tail[i].x, snake.tail[i].y, 20, 20);
+        // if statements for turn conditions and what that does to the images hopefully 
+
         if (snake.tail[i] == snake.tail[snake.tail.length - 1]) {
-            ctx.drawImage(head, snake.tail[snake.tail.length -1].x, snake.tail[snake.tail.length -1].y, 23, 23);
+            ctx.drawImage(head, snake.tail[snake.tail.length -1].x, snake.tail[snake.tail.length - 1].y, 25, 25);
         } else if (snake.tail[i] == snake.tail[0]) {
-            ctx.drawImage(tail, snake.tail[0].x, snake.tail[0].y, 23, 23);
+            ctx.drawImage(tail, snake.tail[0].x, snake.tail[0].y, 25, 25);
         } else {
-        ctx.drawImage(body, snake.tail[i].x, snake.tail[i].y, 23, 23);
+        ctx.drawImage(body, snake.tail[i].x, snake.tail[i].y, 25, 25);
         }
         //Check tail x and y's against the head piece
         if (snake.long > 3) {
@@ -105,7 +108,7 @@ function gameOver() {
         topRight.textContent = 'Game Over! Press Space!';
     }
     //Level 3 obstacle detection
-    if (currentLevel == 3 && snake.x + 20 > tempVal && snake.x < tempVal + 20 && snake.y + 20 > 160 && snake.y < 220) {
+    if (currentLevel == 3 && snake.x + 20 > tempVal && snake.x < tempVal + 20 && snake.y + 20 > 140 && snake.y < 280) {
         snake.alive = false;
         topRight.textContent = 'Game Over! Press Space!';
     }
@@ -141,17 +144,15 @@ function level4Plus() {
 }
 
 function gameLoop() {
-    ctx.fillStyle = '#047c04';
-    ctx.fillRect(0, 0, canvas.width, canvas.height); // Drawing canvas 
-    // ctx.drawImage(head, 0, 0, 20, 20);
+    // ctx.fillStyle = '#047c04';
+    // ctx.fillRect(0, 0, canvas.width, canvas.height); // Drawing canvas 
+    ctx.drawImage(grass, 0, 0, canvas.width, canvas.height);
     //Drawing the obstacles for the specific level
     if (currentLevel == 2) {
-        ctx.fillStyle = '#141414';
-        level2.rect1(80, 60, 20, 280);
-        level2.rect1(300, 60, 20, 280);
+        ctx.drawImage(wall, 80, 60, 20, 280);
+        ctx.drawImage(wall, 300, 60, 20, 280);
     } else if (currentLevel == 3) {
-        ctx.fillStyle = "#141414";
-        level3.rect2(160, 20, 60);
+        level3.rect2(140, 25, 140);
     } else if (currentLevel >= 4) {
         for (let i = 0; i < lvl4Arr.length; i++) {
             ctx.fillStyle = "#141414";
@@ -178,9 +179,11 @@ function gameLoop() {
     }
 }
     //Everything relating to the apple
-    ctx.fillStyle = 'red';
-    ctx.fillRect(apple.x, apple.y, 20, 20);
+    // ctx.fillStyle = 'red';
+    // ctx.fillRect(apple.x, apple.y, 20, 20);
+    // ctx.drawImage(applePic, apple.x, apple.y, 25, 25);
     chomp();
+    apple.sprite();
     //Goal display
     if (currentLevel === 1) {
             middlePart.textContent = `Goal: ${goal}`;

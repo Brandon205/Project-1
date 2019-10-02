@@ -29,6 +29,10 @@ img {
     padding: 10px 5px;
 }
 
+.no-show {
+    display: none;
+}
+
 .controller {
     display: grid;
     min-height: 100px;

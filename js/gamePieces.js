@@ -10,10 +10,15 @@ var upArrow = document.getElementById('up');
 var rightArrow = document.getElementById('right');
 var downArrow = document.getElementById('down');
 var leftArrow = document.getElementById('left');
+var radians = Math.PI/180;
 
 var head = document.getElementById('head');
 var body = document.getElementById('body');
 var tail = document.getElementById('tail');
+var applePic = document.getElementById('apple');
+var grass = document.getElementById('grass');
+var apples = document.getElementById('apples');
+var wall = document.getElementById('wall');
 
 let randoNumber = function() {
     let num = Math.floor(Math.random() * 10) * 40;
@@ -24,7 +29,7 @@ var goal = 5;
 var goal2 = 5;
 let goal3 = 8;
 let score = 0;
-var currentLevel = 1;
+var currentLevel = 3;
 let lvl4Arr = [];
 
 //Game Objects
@@ -38,25 +43,41 @@ var snake = {
     alive: true,
 }
 
+var appleObj = {
+    apple1: {
+        x: 0,
+        y: 2,
+    },
+    apple2: {
+        x: 28,
+        y: 0,
+    }
+}
+
 var apple = {
     x: randoNumber(),
     y: randoNumber(),
     newApple: function() {
         apple.x = randoNumber();
         apple.y = randoNumber();
+    },
+    count: 1,
+    sprite: function() {
+        if (this.count == 1) {
+            ctx.drawImage(apples, appleObj.apple1.x, appleObj.apple1.y, 24, 24, this.x, this.y, 23, 23);
+            this.count++;
+        } else if (this.count == 2) {
+            ctx.drawImage(apples, appleObj.apple2.x, appleObj.apple2.y, 24, 24, this.x, this.y + 1, 23, 23);
+            this.count--;
+        }
+        
     }
+    
 }
 
-// console.log(level1.rect1);
-var level2 = {
-    //obstacles
-    rect1: function(x, y, w, h) {
-        ctx.fillRect(x, y, w, h);
-    }
-}
-let tempVal = 30;
+let tempVal = 30
 var level3 = {
-    xVel: 5,
+    xVel: 8,
     rect2: function(yVal, wVal, hVal) {
         tempVal += this.xVel;
         if (tempVal > 360) {
@@ -64,7 +85,7 @@ var level3 = {
         } else if (tempVal < 20) {
             this.xVel *= -1;
         }
-        ctx.fillRect(tempVal, yVal, wVal, hVal);
+        ctx.drawImage(wall, 0, 0, 20, 140, tempVal, yVal, wVal, hVal);
     },
 }
 
