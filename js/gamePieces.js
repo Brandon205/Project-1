@@ -41,7 +41,7 @@ let screenWidth = screen.width;
 let goal = 5;
 let goal2 = 5;
 let score = 0;
-let currentLevel = 3;
+let currentLevel = 1;
 let lvl4Arr = [];
 
 //Game Objects
