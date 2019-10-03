@@ -208,7 +208,7 @@ document.addEventListener('keydown', function(e) {
     movement(e);
 });
 
-document.querySelector("#top-right").addEventListener('click', function() {
+document.querySelector("#game-state").addEventListener('click', function() {
     reset();
 });
 

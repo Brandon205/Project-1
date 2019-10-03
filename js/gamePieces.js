@@ -1,8 +1,8 @@
 //DOM references
 var canvas = document.getElementById('canvas');
 var ctx = canvas.getContext('2d');
-var topRight = document.getElementById('top-right');
-var topLeft = document.getElementById('top-left');
+var topRight = document.getElementById('game-state');
+var topLeft = document.getElementById('score');
 var resetButton = document.getElementById('reset');
 var middlePart = document.getElementById('middle');
 
@@ -33,8 +33,8 @@ wall.src = 'img/wall.png';
 let randoNumber = function() {
     return Math.floor(Math.random() * 10) * 40;
 }
-document.getElementById('top-left').textContent = `Score: 0`;
-document.getElementById('top-right').textContent = `Start Game!`
+document.getElementById('score').textContent = `Score: 0`;
+document.getElementById('game-state').textContent = `Start Game!`
 
 let screenWidth = screen.width;
 let goal = 5;
