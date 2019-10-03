@@ -41,7 +41,7 @@ let screenWidth = screen.width;
 let goal = 5;
 let goal2 = 5;
 let score = 0;
-let currentLevel = 1;
+let currentLevel = 3;
 let lvl4Arr = [];
 
 //Game Objects
@@ -91,7 +91,7 @@ let goal3 = 8;
 let xVal = 30;
 var level3 = {
     xVel: 8,
-    rect2: function(yVal, wVal, hVal) {
+    rect: function(yVal, wVal, hVal) {
         xVal += this.xVel;
         if (xVal > 360) {
             this.xVel *= -1;
@@ -107,7 +107,6 @@ var randoLevel = {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         for (let i = 0; i < amount; i++) {
             lvl4Arr.push({x: randoNumber(), y: randoNumber()});
-            // fillRect(randoNumber, randoNumber, 20, 20);
         } 
         if (lvl4Arr.length > amount) {
             lvl4Arr.pop();

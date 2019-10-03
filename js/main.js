@@ -161,10 +161,9 @@ function gameLoop() { // Where it all comes together and loops through, nearly e
         ctx.drawImage(wall, 80, 60, 23, 280);
         ctx.drawImage(wall, 300, 60, 23, 280);
     } else if (currentLevel == 3) {
-        level3.rect2(140, 25, 140);
+        level3.rect(140, 25, 140);
     } else if (currentLevel >= 4) {
         for (let i = 0; i < lvl4Arr.length; i++) {
-            ctx.fillStyle = "#141414";
             let xval = lvl4Arr[i].x;
             let yval = lvl4Arr[i].y;
             ctx.drawImage(wall, 0, 0, 34, 34, xval, yval, 23, 23);
@@ -213,26 +212,20 @@ document.querySelector("#top-right").addEventListener('click', function() {
     reset();
 });
 
+// Controls for the mobile buttons 
 upArrow.addEventListener('click', function(e) {
-    e.preventDefault();
     let up = {keyCode: 38};
     movement(up);
 });
-
 rightArrow.addEventListener('click', function(e) {
-    e.preventDefault();
     let right = {keyCode: 39};
     movement(right);
 });
-
 downArrow.addEventListener('click', function(e) {
-    e.preventDefault();
     let down = {keyCode: 40};
     movement(down);
 });
-
 leftArrow.addEventListener('click', function(e) {
-    e.preventDefault();
     let left = {keyCode: 37};
     movement(left);
 });
