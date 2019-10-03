@@ -230,5 +230,5 @@ leftArrow.addEventListener('touchstart', function(e) {
     movement(left);
 });
 
-screenWidth > 600 ? fps = 111 : fps = 125;
+screenWidth > 600 ? fps = 125 : fps = 100;
 setInterval(gameLoop, fps);
