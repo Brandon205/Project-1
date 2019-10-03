@@ -12,21 +12,32 @@ var rightArrow = document.getElementById('right');
 var downArrow = document.getElementById('down');
 var leftArrow = document.getElementById('left');
 
-// All of the sprites used
-var head0 = document.getElementById('head');
-var head90 = document.getElementById('head90');
-var head180 = document.getElementById('head180');
-var head270 = document.getElementById('head270');
-var body = document.getElementById('body');
-var grass = document.getElementById('grass');
-var apples = document.getElementById('apples');
-var wall = document.getElementById('wall');
+// All of the handmade sprites used
+var head0 = new Image();
+head0.src = 'img/snakePieces/snakeHead.png';
+var head90 = new Image();
+head90.src = 'img/snakePieces/snakeHead90.png';
+var head180 = new Image();
+head180.src = 'img/snakePieces/snakeHead180.png';
+var head270 = new Image();
+head270.src = 'img/snakePieces/snakeHead270.png';
+var body = new Image();
+body.src = 'img/snakePieces/snakeBack.png';
+var grass = new Image();
+grass.src = 'img/grass.png';
+var apples = new Image();
+apples.src = 'img/appleSprite.png';
+var wall = new Image();
+wall.src = 'img/wall.png';
 
 let randoNumber = function() {
     let num = Math.floor(Math.random() * 10) * 40;
     return num;
 }
+document.getElementById('top-left').textContent = `Score: 0`;
+document.getElementById('top-right').textContent = `Start Game!`
 
+let screenWidth = screen.width;
 let goal = 5;
 let goal2 = 5;
 let score = 0;

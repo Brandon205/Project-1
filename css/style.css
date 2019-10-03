@@ -17,9 +17,14 @@ div {
     margin: 0;
 }
 
+main {
+    vertical-align: top;
+    display: inline-block;
+    margin: 0;
+}
+
 img {
-    max-width: 50px;
-    max-height: 50px;
+    display: none;
 }
 
 .flex {
@@ -29,21 +34,10 @@ img {
     padding: 10px 5px;
 }
 
-.no-show {
-    display: none;
-}
-
-.reset {
-    padding: 10px;
-    margin: 10px auto;
-    border: 2px solid blue;
-    background-color: rgba(255, 255, 255, 0);
-}
-
+/* For the mobile version of the game */
 .controller {
     display: grid;
     min-height: 100px;
-    max-width: 400;
     grid-template-columns: 100px 100px 100px;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas: 
@@ -52,8 +46,9 @@ img {
     "blank down blank";
     justify-content: center;
     font-family: sans-serif;
-    font-size: 20px;
+    font-size: 30px;
     margin-top: 15px;
+    padding: 10px;
 }
 
 #blank {
@@ -62,29 +57,55 @@ img {
 
 #up {
     grid-area: "up";
-    background: white;
+    background: rgba(255, 255, 255, 0);
+    border: 2px solid blue;
 }
+
+#up:active {
+    background-color: rgba(0, 0, 255, 0.5);
+}
+
 #right {
     grid-area: "right";
-    background: white;
+    background: rgba(255, 255, 255, 0);
+    border: 2px solid blue;
 }
+
+#right:active {
+    background-color: rgba(0, 0, 255, 0.5);
+}
+
 #down {
     grid-area: "down";
-    background: white;
+    background: rgba(255, 255, 255, 0);
+    border: 2px solid blue;
 }
+
+#down:active {
+    background-color: rgba(0, 0, 255, 0.5);
+}
+
 #left {
     grid-area: "left";
-    background: white;
+    background: rgba(255, 255, 255, 0);
+    border: 2px solid blue;
 }
+
+#left:active {
+    background-color: rgba(0, 0, 255, 0.5);
+}
+
 
 #github {
     float: left;
     margin-right: 20px;
+    margin-top: 20px;
 }
 
 #linkedin {
     float: right;
     margin-left: 20px;
+    margin-top: 15px;
 }
 
 #top-left {
@@ -114,17 +135,15 @@ img {
     body {
         font-size: 17px;
     }
-    
+
     .controller {
         display: none;
     }
 
-    .footer {
-        bottom: 10px;
-    }
-
-    .reset {
-        display: none;
+    img {
+        display: inline-block;
+        max-width: 50px;
+        max-height: 50px;
     }
 
     #game {

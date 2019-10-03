@@ -7,7 +7,7 @@ function reset() { //Very rudimentary reset function
     snake.y = randoNumber();
     score = 0;
     topLeft.textContent = `Score: ${score}`;
-    topRight.textContent = "Play Game!"
+    topRight.textContent = "Start Game!"
 }
 
 function checkDirection(x, y) { // Takes in a direction and calls move() with a degree direction
@@ -45,7 +45,7 @@ function move(dir) { // Takes in a direction from checkDirection() and changes t
         if (snake.long > 3) { //Check tail x and y's against the head piece
             if (tail[i].x == snake.x && snake.tail[i].y == snake.y) {
                 snake.alive = false;
-                topRight.textContent = 'Game Over! Press Space!';
+                screenWidth < 600 ? topRight.textContent = 'Game Over! Tap Here!' : topRight.textContent = 'Game Over! Press Space!';
             }
         }
     }
@@ -123,19 +123,19 @@ function movement(evt) {// Will take in a keycode and call going() with the corr
 function gameOver() { // This big boy has the different levels and their walls for collision detection 
     if (snake.x > canvas.width - 20 || snake.x < 0 || snake.y + 20 > canvas.height || snake.y < 0) {//Levels 1-3 wall detection
         snake.alive = false;
-        topRight.textContent = 'Game Over! Press Space!';
+        screenWidth < 600 ? topRight.textContent = 'Game Over! Tap Here!' : topRight.textContent = 'Game Over! Press Space!';
     }
 
     //Level 2 obstacles detection
     if (currentLevel == 2 && snake.x + 20 > 80 && snake.x < 100 && snake.y + 20 > 60 && snake.y < 340 || currentLevel == 2 && snake.x + 20 > 300 && snake.x < 320 && snake.y + 20 > 60 && snake.y < 340) { // Level 2 wall detection
         snake.alive = false;
-        topRight.textContent = 'Game Over! Press Space!';
+        screenWidth < 600 ? topRight.textContent = 'Game Over! Tap Here!' : topRight.textContent = 'Game Over! Press Space!';
     }
 
     //Level 3 obstacle detection
     if (currentLevel == 3 && snake.x + 20 > xVal && snake.x < xVal + 20 && snake.y + 20 > 140 && snake.y < 280) {
         snake.alive = false;
-        topRight.textContent = 'Game Over! Press Space!';
+        screenWidth < 600 ? topRight.textContent = 'Game Over! Tap Here!' : topRight.textContent = 'Game Over! Press Space!';
     }
     
     //Collision detection for randoLevel
@@ -143,7 +143,7 @@ function gameOver() { // This big boy has the different levels and their walls f
         for (let i = 0; i < lvl4Arr.length; i++) {
             if (snake.x + 20 > lvl4Arr[i].x && snake.x < lvl4Arr[i].x + 20 && snake.y + 20 > lvl4Arr[i].y && snake.y < lvl4Arr[i].y + 20) {
                 snake.alive = false;
-                topRight.textContent = 'Game Over! Press Space!';
+                screenWidth < 600 ? topRight.textContent = 'Game Over! Tap Here!' : topRight.textContent = 'Game Over! Press Space!';
             }
         }
     }
@@ -158,8 +158,8 @@ function level4Plus() { // Will call the random rectangle generator with the amo
 function gameLoop() { // Where it all comes together and loops through, nearly everything is called from here
     ctx.drawImage(grass, 0, 0, canvas.width, canvas.height);
     if (currentLevel == 2) { //Drawing the obstacles for the specific level
-        ctx.drawImage(wall, 80, 60, 20, 280);
-        ctx.drawImage(wall, 300, 60, 20, 280);
+        ctx.drawImage(wall, 80, 60, 23, 280);
+        ctx.drawImage(wall, 300, 60, 23, 280);
     } else if (currentLevel == 3) {
         level3.rect2(140, 25, 140);
     } else if (currentLevel >= 4) {
@@ -180,7 +180,7 @@ function gameLoop() { // Where it all comes together and loops through, nearly e
             snake.tail.shift();
         }
         if (currentLevel == 1 && score >= goal || currentLevel == 2 && score >= goal2 || currentLevel == 3 && score >= goal3 || currentLevel >= 4 && score >= goal3 + currentLevel) { // Winning conditions
-            topRight.textContent = `You Win! Press Space!`;
+            screenWidth < 600 ? topRight.textContent = 'You Win! Tap Here!' : topRight.textContent = 'You Win! Press Space!';
             currentLevel++;
             snake.alive = false;
             level4Plus();
@@ -209,7 +209,7 @@ document.addEventListener('keydown', function(e) {
     movement(e);
 });
 
-document.querySelector(".reset").addEventListener('click', function() {
+document.querySelector("#top-right").addEventListener('click', function() {
     reset();
 });
 
