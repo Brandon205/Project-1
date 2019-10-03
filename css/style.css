@@ -4,6 +4,7 @@ body {
     font-family: 'Press Start 2P', cursive;
     background: linear-gradient(to top, #acb6e5, #86fde8);
     min-height: 100vh;
+    touch-action: manipulation;
 }
 
 canvas {
