@@ -230,4 +230,4 @@ leftArrow.addEventListener('touchstart', function(e) {
     movement(left);
 });
 
-setInterval(gameLoop, 1000/8);
+setInterval(gameLoop, 1000/10);

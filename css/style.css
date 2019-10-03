@@ -37,7 +37,7 @@ img {
 /* For the mobile version of the game */
 .controller {
     display: grid;
-    min-height: 100px;
+    min-height: 175px;
     grid-template-columns: 100px 100px 100px;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-areas: 

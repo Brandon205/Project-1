@@ -31,8 +31,7 @@ var wall = new Image();
 wall.src = 'img/wall.png';
 
 let randoNumber = function() {
-    let num = Math.floor(Math.random() * 10) * 40;
-    return num;
+    return Math.floor(Math.random() * 10) * 40;
 }
 document.getElementById('top-left').textContent = `Score: 0`;
 document.getElementById('top-right').textContent = `Start Game!`
