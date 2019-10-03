@@ -1,3 +1,8 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 body {
     text-align: center;
     font-size: 14px;
@@ -24,8 +29,21 @@ main {
     margin: 0;
 }
 
-img {
+footer {
     display: none;
+}
+
+h1 {
+    margin-bottom: 0;
+    display: inline-block;
+    margin-top: 30px;
+    font-size: 2.5em;
+    transition: transform 2s;
+}
+
+h1:hover {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
 }
 
 .flex {
@@ -62,18 +80,10 @@ img {
     border: 2px solid blue;
 }
 
-#up:active {
-    background-color: rgba(0, 0, 255, 0.5);
-}
-
 #right {
     grid-area: "right";
     background: rgba(255, 255, 255, 0);
     border: 2px solid blue;
-}
-
-#right:active {
-    background-color: rgba(0, 0, 255, 0.5);
 }
 
 #down {
@@ -82,18 +92,10 @@ img {
     border: 2px solid blue;
 }
 
-#down:active {
-    background-color: rgba(0, 0, 255, 0.5);
-}
-
 #left {
     grid-area: "left";
     background: rgba(255, 255, 255, 0);
     border: 2px solid blue;
-}
-
-#left:active {
-    background-color: rgba(0, 0, 255, 0.5);
 }
 
 
@@ -101,6 +103,7 @@ img {
     float: left;
     margin-right: 20px;
     margin-top: 20px;
+    /* position: relative; */
 }
 
 #linkedin {
@@ -137,14 +140,24 @@ img {
         font-size: 17px;
     }
 
+    footer {
+        display: flex;
+        justify-content: space-between;
+        bottom: 0;
+    }
+
     .controller {
         display: none;
     }
 
-    img {
-        display: inline-block;
-        max-width: 50px;
+    #github {
         max-height: 50px;
+        max-width: 50px;
+    }
+
+    #linkedin {
+        height: 61px;
+        width: 61px
     }
 
     #game {

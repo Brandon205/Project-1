@@ -42,6 +42,7 @@ let goal2 = 5;
 let score = 0;
 let currentLevel = 1;
 let lvl4Arr = [];
+let fps; // Not really fps but for lack of a better term, it is 1000/8 or 9 depending on the screen size 9 is smoother on mobile but also faster
 
 //Game Objects
 var snakeStart = {
