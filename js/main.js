@@ -213,19 +213,19 @@ document.querySelector("#top-right").addEventListener('click', function() {
 });
 
 // Controls for the mobile buttons 
-upArrow.addEventListener('click', function(e) {
+upArrow.addEventListener('touchstart', function(e) {
     let up = {keyCode: 38};
     movement(up);
 });
-rightArrow.addEventListener('click', function(e) {
+rightArrow.addEventListener('touchstart', function(e) {
     let right = {keyCode: 39};
     movement(right);
 });
-downArrow.addEventListener('click', function(e) {
+downArrow.addEventListener('touchstart', function(e) {
     let down = {keyCode: 40};
     movement(down);
 });
-leftArrow.addEventListener('click', function(e) {
+leftArrow.addEventListener('touchstart', function(e) {
     let left = {keyCode: 37};
     movement(left);
 });
