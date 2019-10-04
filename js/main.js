@@ -190,13 +190,13 @@ function gameLoop() { // Where it all comes together and loops through, nearly e
     apple.sprite();
 
     if (currentLevel === 1) { //Goal display
-            middlePart.textContent = `Goal: ${goal}`;
+            middlePart.textContent = `Level: ${currentLevel} Goal: ${goal}`;
         } else if (currentLevel == 2){
-            middlePart.textContent = `Goal: ${goal2}`;
+            middlePart.textContent = `Level: ${currentLevel} Goal: ${goal2}`;
         } else if (currentLevel == 3) {
-            middlePart.textContent = `Goal: ${goal3}`;
+            middlePart.textContent = `Level: ${currentLevel} Goal: ${goal3}`;
         } else if (currentLevel >= 4) {
-            middlePart.textContent = `Goal: ${goal3 + currentLevel}`;
+            middlePart.textContent = `Level: ${currentLevel} Goal: ${goal3 + currentLevel}`;
         }
 
     gameOver();

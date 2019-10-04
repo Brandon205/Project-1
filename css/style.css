@@ -121,11 +121,11 @@ img:hover {
     margin-top: 15px;
 }
 
-#top-left {
+#score {
     border: 2px solid blue;
 }
 
-#top-right {
+#game-state {
     border: 2px solid blue;
     padding: 5px auto;
 }
