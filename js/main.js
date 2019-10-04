@@ -6,7 +6,7 @@ function reset() { //Very rudimentary reset function
     snake.x = randoNumber();
     snake.y = randoNumber();
     score = 0;
-    topLeft.textContent = `Score: ${score}`;
+    topLeft.textContent = `Score: ${score} Best: ${highScore}`;
     topRight.textContent = "Start Game!"
 }
 
@@ -71,7 +71,11 @@ var chomp = function() { // Will check if apple is on top of wall, if snake is o
         grow();
         apple.newApple();
         score++;
-        topLeft.textContent = `Score: ${score}`
+        if (score > highScore) {
+            localStorage.setItem('highscore', score);
+            highScore = localStorage.getItem('highscore');
+        }
+        topLeft.textContent = `Score: ${score} Best: ${highScore}`;
     } else {
         return false;
     }
@@ -230,5 +234,4 @@ leftArrow.addEventListener('touchstart', function(e) {
     movement(left);
 });
 
-screenWidth > 600 ? fps = 125 : fps = 100;
-setInterval(gameLoop, fps);
+setInterval(gameLoop, 112);

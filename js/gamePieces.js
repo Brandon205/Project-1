@@ -5,7 +5,6 @@ var topRight = document.getElementById('game-state');
 var topLeft = document.getElementById('score');
 var resetButton = document.getElementById('reset');
 var middlePart = document.getElementById('middle');
-
 // References for the mobile buttons
 var upArrow = document.getElementById('up');
 var rightArrow = document.getElementById('right');
@@ -33,7 +32,8 @@ wall.src = 'img/wall.png';
 let randoNumber = function() {
     return Math.floor(Math.random() * 10) * 40;
 }
-document.getElementById('score').textContent = `Score: 0`;
+let highScore = 0;
+document.getElementById('score').textContent = `Score: 0 Best: 0`;
 document.getElementById('game-state').textContent = `Start Game!`
 
 let screenWidth = screen.width;
@@ -42,7 +42,6 @@ let goal2 = 5;
 let score = 0;
 let currentLevel = 1;
 let lvl4Arr = [];
-let fps; // Not really fps but for lack of a better term, it is 1000/8 or 10 depending on the screen size 9 is smoother on mobile but also faster
 
 //Game Objects
 var snakeStart = {
