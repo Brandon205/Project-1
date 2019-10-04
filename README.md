@@ -7,7 +7,7 @@ The technologies that I used are:
 - CSS3
 - Vanilla JavaScript
 
-The project itself can be found and played [here](https://brandon205.github.io/Project-1/)
+The project itself can be found and played [here](https://brandon205.github.io/Project-1/).
 
 
 ## Day 1
@@ -21,6 +21,7 @@ One of the hardest parts of making the wireframe was the coming up with the logi
 see below I started to make some designs on how the document would flow and how one function would lead to the next.
 
 Also on day 1 I began coding, I was able to get the basic canvas drawn, the gameLoop function constructed, along with a few different functions and variables that I just made to somewhat structure the start of the logic. 
+
 
 ![Wireframe1](img/Wireframe.png)
 ![Wireframe2](img/stretchGoals.png)
@@ -92,3 +93,14 @@ Today I was able to continue takling the challenge of adding sprites and animati
 On the last full day of making the project I spent most of my time cleaning up and making comments throughout my code. Also, I was able to see a few things that could have been compressed into something like a ternary condition or just gotten rid of in general. Other than those things I made a header with a fancy hover transition, moved the image links to the bottom of the screen and changed the loop rate by just a tiny bit. The biggest thing I accomplished today was finshing up the mobile button stylizing and was able to deploy the game with GitHub Pages and test out the game on a phone. This went pretty well, but I also saw many things that weren't quite right, so thats why there are about 10 different commits made just on day 7 alone.
 
 ## Day 8
+In the few hours that we got to finalize our project I was able to make a few fixes and update the score and goal display. To this section I added a level display so that you can see what level you are on, which is something that was suggested to me when having friends play test the game. I also added a highscore which updates if the score you get is higher than it, like it should. I also tested the game a few more times and made sure it was where I wanted it to be when I turned it in.
+
+## The Future
+I definitely plan to update this project and as I was testing it and messing around I came up with a few ideas that I would like to add later on. Here is a list of some of those ideas, and there will be more to come as I think up more.
+- Change the way that levels 4 and up are randomly made, right now the difficulty somewhat exponentially increases which isn't the best because it makes level 8 pretty much the furthest I see people getting to.
+- Fix the one bug that is still present but not gamebreaking, which is the chance for the snake to respawn on a wall and immedietly cause a game over
+- A Mode selector, something like zero deaths
+- Add Sounds 
+- Redesign snake so that rather than squares it is more round (Somewhat like the Google snake game) 
+- Possibly more animations along with better (Not 8-bit) graphics
+- Google Play Store??
